@@ -1,0 +1,66 @@
+name: BrownNoise15
+options:
+  bundleIdPrefix: com.example
+
+targets:
+  BrownNoise15Core:
+    type: framework
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: BrownNoise15
+        excludes:
+          - "MainView.swift"
+          - "BrownNoise15App.swift"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.BrownNoise15Core
+        GENERATE_INFOPLIST_FILE: YES
+    scheme:
+      testTargets:
+        - BrownNoise15CoreTests
+      gatherCoverageData: true
+
+  BrownNoise15CoreTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - BrownNoise15Tests
+    dependencies:
+      - target: BrownNoise15Core
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+
+  BrownNoise15:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - BrownNoise15
+    dependencies:
+      - target: BrownNoise15Core
+    info:
+      path: BrownNoise15/Info.plist
+      properties:
+        UIBackgroundModes: [audio]
+    settings:
+      base:
+        INFOPLIST_FILE: BrownNoise15/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.BrownNoise15
+    scheme:
+      testTargets:
+        - BrownNoise15Tests
+      gatherCoverageData: true
+
+  BrownNoise15Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - BrownNoise15Tests
+    dependencies:
+      - target: BrownNoise15
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/BrownNoise15.app/BrownNoise15" 
