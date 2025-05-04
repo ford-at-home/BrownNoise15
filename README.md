@@ -1,6 +1,8 @@
 # BrownNoise15
+![bn15.png](./bn15.png)
 
 **BrownNoise15** is a simple, elegant iOS app that helps you unwind. It plays one song of your choice, followed by 15 minutes of soothing brown noise. Perfect for falling asleep, meditating, or just zoning out.
+
 
 ---
 
@@ -27,7 +29,7 @@ Coming soon.
 3. The song plays once.
 4. When it ends, 15 minutes of brown noise begins.
 
-That’s it.
+That's it.
 
 ---
 
